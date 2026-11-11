@@ -1,24 +1,24 @@
 # CriptoLab — Depois de César
 
-Pacote estático pronto para o GitHub Pages. Os arquivos index.html, app.js, style.css e a pasta assets devem ficar na raiz do repositório.
+Versão do aluno: 30 etapas sequenciais, de Atbash a RSA didático. Resolva cada etapa com sua resposta e seu rascunho para liberar a próxima. Laboratório e Treino livre ficam disponíveis ao concluir as 30 etapas. A impressão reúne somente suas próprias resoluções já liberadas.
 
-## Publicar para os alunos
+## Atualizar a atividade existente
 
-1. Crie um repositório público no GitHub, por exemplo criptolab.
-2. Envie o conteúdo desta pasta em Add file → Upload files e confirme em Commit changes. Envie os arquivos extraídos, não o ZIP. Mantenha index.html na raiz e preserve a estrutura da pasta assets.
-3. Verifique se o arquivo vazio .nojekyll também foi enviado. Se necessário, crie-o em Add file → Create new file.
-4. Abra Settings → Pages. Em Build and deployment → Source, selecione Deploy from a branch.
-5. Escolha main e /(root), depois Save.
-6. Quando a publicação terminar, clique em Visit site em Settings → Pages e compartilhe o endereço com a turma.
+1. Extraia o ZIP no computador. Não envie o próprio ZIP ao GitHub.
+2. Abra a pasta "criptografia tema pokemon" no repositório existente.
+3. Substitua somente o conteúdo dessa pasta pelos arquivos extraídos, mantendo os nomes e a estrutura de assets. O index.html deve ficar diretamente dentro da pasta da atividade, sem outra pasta antes dele.
+4. Confirme em Commit changes e aguarde a publicação atual do GitHub Pages terminar.
+5. Abra o mesmo link da atividade e recarregue. Se necessário, use Ctrl+F5.
 
-Os alunos acessam pelo navegador, sem conta no GitHub. O progresso é salvo apenas no navegador de cada aluno e não é enviado ao professor. Os gabaritos estão disponíveis como apoio ao estudo. Para avaliação, peça o raciocínio no caderno.
+O Pages do repositório já funciona: preserve sua configuração, o index.html principal e as outras pastas. Não é necessário criar outro repositório ou alterar a origem de publicação.
 
-## Atualizar
+## Acesso dos alunos
 
-Substitua os arquivos alterados na mesma branch. Não mude os nomes dos arquivos nem a estrutura da pasta assets. O site usa caminhos relativos para funcionar também em endereços como https://SEU-USUARIO.github.io/criptolab/.
+Os alunos abrem o link no navegador, sem conta no GitHub. Progresso e rascunhos ficam apenas no navegador utilizado, sem envio de notas ao professor. A página do aluno não oferece guia do professor nem gabarito. A conferência local é uma barreira básica de treino; um site estático não garante integridade de avaliação formal.
+
+Este pacote contém somente os arquivos públicos da atividade. Não acrescente material de autoria, testes ou arquivos com respostas ao repositório público.
 
 ## Créditos
 
 Projeto educativo de fã. Pokémon pertence aos respectivos titulares. Consulte Fontes e referências no rodapé do site para os créditos das imagens e os materiais de apoio. Este pacote não concede uma nova licença sobre a arte de terceiros.
 
-Documentação: [Configurar a publicação do GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
