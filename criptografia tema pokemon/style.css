@@ -201,3 +201,40 @@
 .formula-tip-fx{font:700 20px var(--mono);color:#13233f;background:#fff;border-radius:10px;padding:10px 14px;margin:10px 0;border-left:6px solid #f2c230;overflow-x:auto}
 .formula-tip ol{margin:0;padding-left:20px;font-size:14px}.formula-tip li+li{margin-top:4px}
 .formula-tip small{display:block;margin-top:8px;color:var(--muted)}
+/* Exercícios interativos do Passo 4 */
+.lp-part{margin:-4px 0 12px}
+.part-tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;padding:4px 12px;border-radius:20px;color:#fff}
+.part-tag.see{background:#6a7a96}.part-tag.do{background:var(--pc)}
+.exercise{margin-top:26px;border:3px dashed var(--pc);border-radius:18px;padding:18px 20px;background:color-mix(in srgb,var(--pc) 7%,#fff)}
+.exercise.is-done{border-style:solid}
+.ex-head{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:12px}
+.ex-head .text-link{margin-left:auto}
+.ex-badge{background:#3daa5c;color:#fff;font-weight:800;font-size:13px;padding:4px 12px;border-radius:20px}
+.ex-lock{font-size:13px;color:var(--muted)}
+.ex-q{font-size:16px;margin-bottom:12px}
+.ex-line{display:flex;flex-wrap:wrap;align-items:flex-end;gap:10px;margin-top:16px}
+.ex-ask{display:inline-flex;flex-direction:column;gap:4px;font-size:14px;font-weight:700}
+.ex-ask input{width:120px;padding:9px 12px;border:2px solid var(--pc);border-radius:10px;font:700 18px var(--mono);text-transform:uppercase;background:#fff}
+.m-step.ask{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.m-step.ask .ex-ask input{width:90px;background:#fffbea;color:#13233f}
+.ex-machine{max-width:560px}
+.yn{display:flex;gap:8px;margin-left:12px}
+.yn .case-btn{border-color:#f2c230;color:#f2c230;background:transparent}
+.yn .case-btn:hover{background:#f2c230;color:#13233f}
+.ex-msg{margin-top:14px;padding:10px 14px;border-radius:12px;font-weight:700;font-size:15px}
+.ex-msg.ok{background:#e4f6ea;color:#1f6b35;border-left:6px solid #3daa5c}
+.ex-msg.err{background:#fdeaea;color:#a32a2a;border-left:6px solid #e94f4f}
+.vbox.mystery{padding-bottom:26px;cursor:pointer}.vbox.mystery em{min-width:26px;text-align:center}
+.vbox.wrong{animation:shake .3s;border-style:dashed}
+@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.ex-row{padding-top:6px}
+.ex-now{margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.ex-grid .cell-active{cursor:pointer;stroke:#f2c230;stroke-width:3}
+.ex-grid .cell-active:hover{fill:#ffe98a}
+.ex-grid .cell-bad{fill:#f7b4b4}
+.logic-done{margin-top:20px;background:#3daa5c;color:#fff;border-radius:16px;padding:16px 20px;font-size:17px}
+.ltab:disabled{opacity:.45;cursor:not-allowed}
+#logic-next:disabled{opacity:.55;cursor:not-allowed}
+.ex-ask span:empty{display:none}
+.proc-ask{align-items:center;margin-top:24px}.pa-text{font:600 16px var(--mono)}
+.vbox.mystery:disabled{opacity:1;color:inherit;cursor:default}
