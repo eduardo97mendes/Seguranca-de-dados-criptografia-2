@@ -1,7 +1,8 @@
 import {portrait,characterText} from './characters.js?v=guided-6';
 import {missions} from './pokemon.js';
 import {alphabet,normalize,atbash,railFence,vigenere,affine,rsa,multipliers} from './ciphers.js';
-import {lessons} from './lessons.js?v=guided-6';
+import {lessons} from './lessons.js?v=guided-7';
+import {ENVIO_URL} from './config.js';
 import {createPractice} from './practice.js';
 import {createProgression,sanitizeProgress,getProgressState,canOpenLesson,canAnswerActivity,recordCorrect} from './progression.js';
 import {normalizeActivityAnswer,verifyActivityAnswer} from './grading.js';
@@ -116,6 +117,15 @@ function renderLab(){
 }
 function traceTable(headers,rows){return `<h4>Acompanhe cada transformação</h4><div class="table-scroll"><table><thead><tr>${headers.map(h=>`<th scope="col">${h}</th>`).join('')}</tr></thead><tbody>${rows.map(row=>`<tr>${row.map(c=>`<td>${escape(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;}
 
+const studentKey='criptolab-aluno';
+function studentName(){try{return (localStorage.getItem(studentKey)||'').trim();}catch{return '';}}
+// Envia cada tentativa ao professor (Apps Script ou similar). Sem ENVIO_URL, nada é enviado.
+function enviarRegistro(activity,value,correct){
+ if(!ENVIO_URL)return;
+ const aluno=studentName();if(!aluno)return;
+ const payload={aluno,atividade:activity.id,tipo:activity.type,resposta:value,acerto:correct,tentativa:attempts[activity.id],data:new Date().toISOString()};
+ fetch(ENVIO_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload),keepalive:true}).catch(()=>{});
+}
 function renderActivities(){
  const lesson=current,progress=state();
  const available=lesson.activities.filter(activity=>canAnswerActivity(activity.id,solvedIds,progression));
@@ -128,7 +138,7 @@ function renderActivities(){
  $('#lesson-panel').innerHTML=`<div class="section-heading compact"><div><h3>Uma etapa de cada vez.</h3><p>Digite sua resposta e use o rascunho na tela. Cada acerto libera a próxima atividade. Você pode rever a explicação em “Entenda” e tentar novamente quantas vezes precisar.</p></div></div><nav class="activity-steps" aria-label="Etapas deste ginásio">${lesson.activities.map((item,i)=>{
   const open=canAnswerActivity(item.id,solvedIds,progression),done=solvedIds.includes(item.id);
   return `<button type="button" data-activity="${item.id}" ${open?'':'disabled'} aria-label="Atividade ${i+1}: ${done?'concluída':open?'disponível':'bloqueada'}" aria-current="${item.id===activity.id?'step':'false'}" class="activity-step ${done?'done':''}"><span>${done?'✓':open?i+1:'🔒'}</span><small>${item.level}</small></button>`;
- }).join('')}</nav><section class="paper student-activity" data-active-activity="${activity.id}" aria-labelledby="activity-title"><div class="activity-top"><span class="badge">${index+1} / 6 · ${activity.level}</span><span class="tiny-label">ETAPA ${globalIndex+1} / ${totalActivities}</span></div><div class="activity-guide">${portrait(lesson.mission.pokemon,'activity-pokemon')}<div><span class="tiny-label">${activity.type.toUpperCase()}</span><h4 id="activity-title">${characterText(activity.prompt)}</h4></div></div><form id="student-form"><div class="field"><label for="student-answer">Sua resposta final</label>${activity.kind==='choice'?`<select id="student-answer" required ${completed?'disabled':''}><option value="">Escolha uma resposta</option>${activity.options.map((option,i)=>`<option value="${i}">${escape(option)}</option>`).join('')}</select>`:`<input id="student-answer" ${activity.kind==='number'?'type="number" min="0" max="32" step="1"':'type="text" maxlength="100" spellcheck="false" autocomplete="off"'} ${completed?'readonly':''} required>`}<small>${activity.kind==='choice'?'Selecione uma das alternativas.':activity.kind==='number'?'Digite somente um número inteiro de 0 a 32.':'Maiúsculas, minúsculas e acentos são aceitos. Espaços e pontuação são ignorados.'}</small></div><div class="field"><label for="student-notes">Seu raciocínio (opcional)</label><textarea id="student-notes" rows="5" maxlength="2000" placeholder="${scratchHelp}"></textarea><small>Use este espaço como rascunho: anote contas, trilhos ou como pensou. A resposta final vai no campo acima.</small></div>${completed?'':`<button type="submit" class="btn primary" id="check-answer">Conferir e liberar a próxima →</button>`}</form><div id="activity-feedback" tabindex="-1" role="status" ${completed?'':'hidden'} class="feedback ${completed?'success':''}">${completed?'✓ Resposta correta. Esta atividade está concluída.':''}</div><div id="student-hint"></div>${completed?`<div class="completion-actions"><button type="button" class="btn primary" id="continue-activity">${progress.complete?'Trilha concluída · abrir laboratório →':'Continuar para a próxima atividade →'}</button><p>${progress.complete?'Você concluiu as 30 atividades e pode experimentar livremente.':'A próxima etapa já foi liberada. Sua resposta e seu rascunho continuam salvos.'}</p></div>`:''}<div class="student-support"><button type="button" class="text-link" id="review-explanation">Rever a explicação deste método</button><button type="button" class="text-link" id="activity-alphabet">Consultar alfabeto A–Z ↕</button></div><div id="activity-alphabet-table" hidden><div class="alphabet-mini">${[...alphabet].map((letter,i)=>`<span>${letter}<small>${i}</small></span>`).join('')}</div></div></section>`;
+ }).join('')}</nav><section class="paper student-activity" data-active-activity="${activity.id}" aria-labelledby="activity-title"><div class="activity-top"><span class="badge">${index+1} / 6 · ${activity.level}</span><span class="tiny-label">ETAPA ${globalIndex+1} / ${totalActivities}</span></div><div class="activity-guide">${portrait(lesson.mission.pokemon,'activity-pokemon')}<div><span class="tiny-label">${activity.type.toUpperCase()}</span><h4 id="activity-title">${characterText(activity.prompt)}</h4></div></div>${activity.exemplo?`<details class="worked-example" open><summary>Exemplo resolvido, passo a passo</summary>${activity.exemplo}</details>`:''}<form id="student-form"><div class="field"><label for="student-answer">Sua resposta final</label>${activity.kind==='choice'?`<select id="student-answer" required ${completed?'disabled':''}><option value="">Escolha uma resposta</option>${activity.options.map((option,i)=>`<option value="${i}">${escape(option)}</option>`).join('')}</select>`:`<input id="student-answer" ${activity.kind==='number'?'type="number" min="0" max="32" step="1"':'type="text" maxlength="100" spellcheck="false" autocomplete="off"'} ${completed?'readonly':''} required>`}<small>${activity.kind==='choice'?'Selecione uma das alternativas.':activity.kind==='number'?'Digite somente um número inteiro de 0 a 32.':'Maiúsculas, minúsculas e acentos são aceitos. Espaços e pontuação são ignorados.'}</small></div><div class="field"><label for="student-notes">Seu raciocínio (opcional)</label><textarea id="student-notes" rows="5" maxlength="2000" placeholder="${scratchHelp}"></textarea><small>Use este espaço como rascunho: anote contas, trilhos ou como pensou. A resposta final vai no campo acima.</small></div>${completed?'':`<button type="submit" class="btn primary" id="check-answer">Conferir e liberar a próxima →</button>`}</form><div id="activity-feedback" tabindex="-1" role="status" ${completed?'':'hidden'} class="feedback ${completed?'success':''}">${completed?'✓ Resposta correta. Esta atividade está concluída.':''}</div><div id="student-hint"></div>${completed?`<div class="completion-actions"><button type="button" class="btn primary" id="continue-activity">${progress.complete?'Trilha concluída · abrir laboratório →':'Continuar para a próxima atividade →'}</button><p>${progress.complete?'Você concluiu as 30 atividades e pode experimentar livremente.':'A próxima etapa já foi liberada. Sua resposta e seu rascunho continuam salvos.'}</p></div>`:''}<div class="student-support"><button type="button" class="text-link" id="review-explanation">Rever a explicação deste método</button><button type="button" class="text-link" id="activity-alphabet">Consultar alfabeto A–Z ↕</button></div><div id="activity-alphabet-table" hidden><div class="alphabet-mini">${[...alphabet].map((letter,i)=>`<span>${letter}<small>${i}</small></span>`).join('')}</div></div></section>`;
  const answerField=$('#student-answer'),noteField=$('#student-notes'),hintContainer=$('#student-hint');
  answerField.value=answers[activity.id]||'';noteField.value=notes[activity.id]||'';
  answerField.oninput=()=>{if(!solvedIds.includes(activity.id)){answers[activity.id]=answerField.value;saveProgress();}};
@@ -142,12 +152,13 @@ function renderActivities(){
   if(!canOpenLesson(lesson.id,solvedIds,progression)||!canAnswerActivity(activity.id,solvedIds,progression)||solvedIds.includes(activity.id))return;
   const value=answerField.value,feedback=$('#activity-feedback'),button=$('#check-answer');
   if(button.disabled)return;
+  if(ENVIO_URL&&!studentName()){feedback.hidden=false;feedback.className='feedback error';feedback.textContent='Digite seu nome e turma na barra do topo antes de conferir. A resposta é enviada ao professor.';return;}
   if(normalizeActivityAnswer(activity,value)===null){feedback.hidden=false;feedback.className='feedback error';feedback.textContent='Confira o formato da resposta indicado abaixo do campo.';return;}
   const revision=sessionRevision;button.disabled=true;button.textContent='Conferindo…';
   try{
    const correct=await verifyActivityAnswer(activity,value);
    if(revision!==sessionRevision)return;
-   answers[activity.id]=value;notes[activity.id]=noteField.value;attempts[activity.id]=(attempts[activity.id]||0)+1;
+   answers[activity.id]=value;notes[activity.id]=noteField.value;attempts[activity.id]=(attempts[activity.id]||0)+1;enviarRegistro(activity,value,correct);
    if(correct){
     solvedIds=recordCorrect(activity.id,solvedIds,progression);saveProgress();
     $('#learning-status').textContent=state().complete?'Parabéns! Trilha completa. Laboratório e treino livre liberados.':'Resposta correta! A próxima atividade foi liberada.';
@@ -200,5 +211,7 @@ $('#print-student').onclick=()=>{
  document.body.classList.add('printing');window.print();
 };
 window.addEventListener('afterprint',()=>document.body.classList.remove('printing'));
+const studentField=$('#student-id');
+if(studentField){studentField.value=studentName();studentField.oninput=()=>{try{localStorage.setItem(studentKey,studentField.value.trim());}catch{}};}
 renderLesson();
 if(lessons.some(lesson=>lesson.id===location.hash.slice(1)))requestAnimationFrame(()=>$('#conteudo').scrollIntoView());
