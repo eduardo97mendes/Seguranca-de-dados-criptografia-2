@@ -152,7 +152,7 @@ function renderActivities(){
   if(!canOpenLesson(lesson.id,solvedIds,progression)||!canAnswerActivity(activity.id,solvedIds,progression)||solvedIds.includes(activity.id))return;
   const value=answerField.value,feedback=$('#activity-feedback'),button=$('#check-answer');
   if(button.disabled)return;
-  if(ENVIO_URL&&!studentName()){feedback.hidden=false;feedback.className='feedback error';feedback.textContent='Digite seu nome e turma na barra do topo antes de conferir. A resposta é enviada ao professor.';return;}
+  if(ENVIO_URL&&!studentName()){feedback.hidden=false;feedback.className='feedback error';feedback.textContent='Volte ao Passo 1 (no início da página) e escreva seu nome e turma. A resposta é enviada ao professor.';return;}
   if(normalizeActivityAnswer(activity,value)===null){feedback.hidden=false;feedback.className='feedback error';feedback.textContent='Confira o formato da resposta indicado abaixo do campo.';return;}
   const revision=sessionRevision;button.disabled=true;button.textContent='Conferindo…';
   try{
