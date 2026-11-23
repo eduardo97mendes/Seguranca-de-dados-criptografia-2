@@ -234,6 +234,7 @@ export const lessons = [
         "prompt": "Treino guiado: cifre LUA usando a chave SOL. Use A=0 e reduza as somas ao intervalo de 0 a 25.",
         "kind": "text",
         "hint": "L(11)+S(18)=29. Como 29=26+3, a primeira saída é D.",
+        "exemplo": "<p><strong>Exemplo: cifre MAR com a chave SOL</strong></p><div class='example-code'>Resultado = (letra + chave) mod 26 · A=0 … Z=25</div><table><thead><tr><th>Letra</th><th>Chave</th><th>Soma</th><th>Situação</th><th>Conta</th><th>Saída</th></tr></thead><tbody><tr><td>M (12)</td><td>S (18)</td><td>30</td><td>Maior que 25</td><td>30 − 26 = 4</td><td>E</td></tr><tr><td>A (0)</td><td>O (14)</td><td>14</td><td>Entre 0 e 25</td><td>nenhuma</td><td>O</td></tr><tr><td>R (17)</td><td>L (11)</td><td>28</td><td>Maior que 25</td><td>28 − 26 = 2</td><td>C</td></tr></tbody></table><p><strong>Três situações possíveis na cifragem:</strong></p><ul><li><strong>Soma entre 0 e 25:</strong> a saída é a própria soma (A+O = 14 → O).</li><li><strong>Soma de 26 ou mais:</strong> subtraia 26 e repita a conta (30 → 4 → E).</li><li><strong>Soma exatamente 26:</strong> o resto é 0, ou seja, A.</li></ul><p>Ao final, MAR com SOL vira EOC. Faça a sua conta na mesma ordem: letra da mensagem, depois letra da chave repetida.</p><p class='note'>Resultado negativo aparece só ao decifrar (subtração). Exemplo: D(3) − S(18) = −15. Some 26: −15 + 26 = 11 → L.</p>",
         "salt": "917b3edb90f96119503215d4",
         "check": "71485db6ca2d182f6796f9ee723cdbd5c20197cb7a5b1f343ba314660d1871cf"
       },

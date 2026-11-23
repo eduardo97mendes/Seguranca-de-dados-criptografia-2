@@ -14,7 +14,7 @@ O Pages do repositório já funciona: preserve sua configuração, o index.html 
 
 ## Acesso dos alunos
 
-Os alunos abrem o link no navegador, sem conta no GitHub. Progresso e rascunhos ficam apenas no navegador utilizado, sem envio de notas ao professor. A página do aluno não oferece guia do professor nem gabarito. A conferência local é uma barreira básica de treino; um site estático não garante integridade de avaliação formal.
+Os alunos abrem o link no navegador, sem conta no GitHub. Progresso e rascunhos ficam no navegador utilizado. Se o professor preencher ENVIO_URL em config.js, cada tentativa (nome, atividade, resposta, acerto) também é enviada para a planilha dele. A página do aluno não oferece guia do professor nem gabarito. A conferência local é uma barreira básica de treino; um site estático não garante integridade de avaliação formal.
 
 Este pacote contém somente os arquivos públicos da atividade. Não acrescente material de autoria, testes ou arquivos com respostas ao repositório público.
 

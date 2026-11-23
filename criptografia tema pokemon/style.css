@@ -30,3 +30,19 @@
 @media(max-width:850px){.student-toolbar{align-items:flex-start;flex-direction:column;gap:15px}}
 @media(max-width:620px){.activity-steps{grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.student-activity{padding:18px}.student-activity h4{font-size:18px}.lab-lock-note{padding:14px 19px;font-size:12px}.student-toolbar>div:last-child{gap:12px}.student-toolbar .btn{font-size:11px}.student-activity .activity-guide{display:flex;gap:10px}.student-activity .activity-pokemon{width:48px;height:48px;flex-basis:48px}.student-activity .activity-top .tiny-label{font-size:8px}.site-header nav .btn{display:inline-flex!important}.student-support{display:grid;gap:12px}}
 @media print{.student-toolbar{display:none!important}.print-only .print-lesson{border-bottom:1px solid #ccc;padding-bottom:12pt;margin-bottom:12pt}.print-only .printed-notes{font-size:11pt;line-height:1.6;white-space:pre-wrap}.print-only p{overflow-wrap:anywhere}}
+
+/* Pilares da lógica de programação */
+.pillars-section{margin-top:4rem;margin-bottom:4rem}
+.pillars-grid{grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.25rem}
+.pillar h3{margin:.4rem 0 .6rem}
+.pillar table{width:100%;border-collapse:collapse;margin:.75rem 0;font-size:.9rem}
+.pillar th,.pillar td{border:1px solid rgba(0,0,0,.15);padding:.35rem .5rem;text-align:center}
+.pillar-code{background:#0f1f3a;color:#e8f0ff;padding:.9rem 1rem;border-radius:8px;overflow-x:auto;font-size:.85rem;line-height:1.45;white-space:pre}
+.pillar-tip{font-size:.9rem;opacity:.85;margin-top:.5rem}
+.pillar-practice{margin-top:1.25rem}
+.worked-example{margin:1rem 0;padding:.75rem 1rem;border:1px dashed rgba(0,0,0,.25);border-radius:8px}
+.worked-example summary{cursor:pointer;font-weight:700}
+.worked-example table{width:100%;border-collapse:collapse;margin:.6rem 0;font-size:.9rem}
+.worked-example th,.worked-example td{border:1px solid rgba(0,0,0,.15);padding:.3rem .45rem;text-align:center}
+.student-id-field{display:flex;gap:.5rem;align-items:center;margin-top:.5rem;font-weight:600}
+.student-id-field input{padding:.4rem .6rem;border:1px solid rgba(0,0,0,.25);border-radius:6px;min-width:220px}
