@@ -195,3 +195,9 @@
 .student-id-field{text-align:left;align-items:stretch}
 .mpath{opacity:.4}
 @media(max-width:600px){.lp{padding:18px}.lp-intro{flex-direction:column;align-items:flex-start}.lp-intro img{width:64px;height:64px}.lp-intro h3{font-size:21px}.machine{min-width:0;width:100%}.m-arrow{transform:rotate(90deg)}.practice-cards{grid-template-columns:1fr}.logic-head{flex-direction:column;align-items:flex-start}}
+/* Dica de fórmula em cada atividade */
+.formula-tip{margin:14px 0 18px;border:2px solid #2459a1;border-radius:16px;background:#eef4ff;padding:14px 18px}
+.formula-tip-label{display:inline-block;background:#2459a1;color:#fff;font-size:11px;font-weight:800;letter-spacing:.06em;padding:3px 10px;border-radius:20px}
+.formula-tip-fx{font:700 20px var(--mono);color:#13233f;background:#fff;border-radius:10px;padding:10px 14px;margin:10px 0;border-left:6px solid #f2c230;overflow-x:auto}
+.formula-tip ol{margin:0;padding-left:20px;font-size:14px}.formula-tip li+li{margin-top:4px}
+.formula-tip small{display:block;margin-top:8px;color:var(--muted)}
